@@ -1,0 +1,164 @@
+html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  max-width: none;
+  background: #fff;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.compare-root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, sans-serif;
+  background: #f8f9fa;
+}
+
+.compare-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1rem;
+  background: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  gap: 0.5rem;
+  color: #111;
+}
+
+.header-labels {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.header-toggles {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  color: #111;
+}
+
+.header-toggles > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.compare-panels {
+  display: flex;
+  flex: 1 1 0;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.panel {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e0e0e0;
+  background: #fff;
+  overflow: auto;
+}
+
+.panel:last-child {
+  border-right: none;
+}
+
+.panel-iframe {
+  flex: 1 1 0;
+  width: 100%;
+  border: none;
+  background: #fff;
+}
+
+.panel-raw {
+  flex: 1 1 0;
+  width: 100%;
+  background: #222;
+  color: #e0e0e0;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  font-size: 0.95rem;
+  padding: 1rem;
+  margin: 0;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+@media (max-width: 900px) {
+  .compare-panels {
+    flex-direction: column;
+  }
+  .panel {
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  .panel:last-child {
+    border-bottom: none;
+  }
+}
+
+.header-options-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #111;
+}
+
+.diff-added {
+  border: 2px solid red !important;
+  box-sizing: border-box;
+}
