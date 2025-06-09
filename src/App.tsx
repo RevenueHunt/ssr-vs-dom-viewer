@@ -68,6 +68,33 @@ function highlightDifferencesBoth(renderedHtml: string, ssrHtml: string): { rend
   }
 }
 
+// CopyButton component for copying text to clipboard with feedback
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1200);
+    } catch {
+      // fallback or error handling could go here
+    }
+  };
+
+  return (
+    <button
+      className="copy-btn"
+      onClick={handleCopy}
+      aria-label="Copy to clipboard"
+      type="button"
+      style={{ position: 'absolute', top: 8, right: 8, zIndex: 2 }}
+    >
+      {copied ? 'Copied!' : 'Copy'}
+    </button>
+  );
+}
+
 function App() {
   const [showRaw, setShowRaw] = useState<boolean>(false);
   const [rewriteResources, setRewriteResources] = useState<boolean>(true);
@@ -199,13 +226,16 @@ function App() {
         </div>
       </header>
       <main className="compare-panels">
-        <section className="panel panel-ssr">
+        <section className="panel panel-ssr" style={{ position: 'relative' }}>
           {ssrLoading ? (
             <div style={{ padding: '1rem' }}>Loading SSR HTML...</div>
           ) : ssrError ? (
             <div style={{ color: 'red', padding: '1rem' }}>Error: {ssrError}</div>
           ) : showRaw ? (
-            <pre className="panel-raw">{ssrHtml}</pre>
+            <div style={{ position: 'relative' }}>
+              <CopyButton text={ssrHtml} />
+              <pre className="panel-raw" style={{ marginTop: 0 }}>{ssrHtml}</pre>
+            </div>
           ) : (
             <iframe
               title="SSR Rendered"
@@ -215,13 +245,16 @@ function App() {
             />
           )}
         </section>
-        <section className="panel panel-rendered">
+        <section className="panel panel-rendered" style={{ position: 'relative' }}>
           {renderedLoading ? (
             <div style={{ padding: '1rem' }}>Loading Rendered DOM...</div>
           ) : renderedError ? (
             <div style={{ color: 'red', padding: '1rem' }}>Error: {renderedError}</div>
           ) : showRaw ? (
-            <pre className="panel-raw">{renderedHtml}</pre>
+            <div style={{ position: 'relative' }}>
+              <CopyButton text={renderedHtml} />
+              <pre className="panel-raw" style={{ marginTop: 0 }}>{renderedHtml}</pre>
+            </div>
           ) : (
             <iframe
               title="Rendered DOM"
